@@ -1,14 +1,38 @@
+aid: tomcat
 name: Apache Tomcat
 description: Open-source implementation of Jakarta Servlet, Jakarta Server Pages,
   and other Jakarta EE specifications, providing a pure Java HTTP web server environment
   for running Java code.
-url: https://tomcat.apache.org/
+type: Index
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+url: >-
+  https://raw.githubusercontent.com/api-evangelist/tomcat/refs/heads/main/apis.yml
 tags:
-- Java
-- Web Server
-- Servlet Container
-- Application Server
-created: '2025'
-modified: '2025'
-apis: []
-common: []
+  - Java
+  - Web Server
+  - Servlet Container
+  - Application Server
+created: '2025-01-01'
+modified: '2026-03-16'
+specificationVersion: '0.19'
+apis:
+  - aid: tomcat:tomcat
+    name: Apache Tomcat Manager API
+    description: >-
+      Apache Tomcat provides a Manager application with an HTTP API for
+      deploying, undeploying, and managing web applications.
+    humanURL: https://tomcat.apache.org/
+    tags:
+      - Java
+      - Web Server
+    properties:
+      - type: Documentation
+        url: https://tomcat.apache.org/tomcat-10.1-doc/manager-howto.html
+common:
+  - type: Website
+    url: https://tomcat.apache.org/
+  - type: Documentation
+    url: https://tomcat.apache.org/tomcat-10.1-doc/
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com
