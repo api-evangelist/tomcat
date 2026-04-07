@@ -1,17 +1,15 @@
 aid: tomcat
 name: Apache Tomcat
-description: Open-source implementation of Jakarta Servlet, Jakarta Server Pages,
-  and other Jakarta EE specifications, providing a pure Java HTTP web server environment
-  for running Java code.
+description: Open-source implementation of Jakarta Servlet, Jakarta Server Pages, and other Jakarta EE specifications, providing a pure Java HTTP web server environment for running Java code.
 type: Index
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 url: >-
   https://raw.githubusercontent.com/api-evangelist/tomcat/refs/heads/main/apis.yml
 tags:
-  - Java
-  - Web Server
-  - Servlet Container
   - Application Server
+  - Java
+  - Servlet Container
+  - Web Server
 created: '2025-01-01'
 modified: '2026-03-16'
 specificationVersion: '0.19'
