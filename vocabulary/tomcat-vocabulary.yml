@@ -1,0 +1,99 @@
+name: Apache Tomcat Vocabulary
+description: Domain vocabulary for Apache Tomcat covering application server concepts, deployment, lifecycle management, and server diagnostics.
+version: '1.0'
+created: '2026-05-03'
+modified: '2026-05-03'
+tags:
+  - Apache Tomcat
+  - Java
+  - Application Server
+  - Servlet Container
+
+terms:
+  - term: Servlet Container
+    definition: The core Tomcat component responsible for loading, executing, and managing Java Servlet components. Implements the Jakarta Servlet specification.
+    aliases: [web container]
+    category: Core Concept
+
+  - term: Context
+    definition: A running web application instance in Tomcat, corresponding to a single WAR file or directory. Identified by its context path.
+    aliases: [web application, webapp]
+    category: Core Concept
+
+  - term: Context Path
+    definition: The URL prefix under which a web application is accessible (e.g., /myapp). The root context path is '/'.
+    category: Attribute
+
+  - term: WAR File
+    definition: Web Application Archive - a JAR-format archive containing compiled servlets, JSPs, configuration, and static resources for deployment.
+    aliases: [web archive, WAR]
+    category: Deployment Artifact
+
+  - term: Virtual Host
+    definition: A Tomcat configuration element that maps hostnames to web applications, allowing multiple sites on a single server.
+    category: Configuration
+
+  - term: Connector
+    definition: A component that handles network connections for a specific protocol (HTTP, HTTPS, AJP). Configured with port, protocol, and SSL settings.
+    category: Configuration
+
+  - term: Session
+    definition: A server-side state object maintaining user context between HTTP requests. Sessions expire after a configurable inactivity timeout.
+    category: Core Concept
+
+  - term: Manager Application
+    definition: The built-in Tomcat web application providing HTTP-based management of deployed applications. Requires manager-script or manager-gui role.
+    category: Tool
+
+  - term: Deploy
+    definition: The process of installing a web application to make it available for serving requests.
+    category: Lifecycle Operation
+
+  - term: Undeploy
+    definition: The process of permanently removing a deployed web application and its artifacts from the server.
+    category: Lifecycle Operation
+
+  - term: Start
+    definition: Making a stopped web application available to accept requests without redeployment.
+    category: Lifecycle Operation
+
+  - term: Stop
+    definition: Making a deployed web application unavailable for requests while keeping it deployed on disk.
+    category: Lifecycle Operation
+
+  - term: Reload
+    definition: Restarting the web application's class loader to pick up changes in WEB-INF/classes and WEB-INF/lib without full undeploy/redeploy.
+    category: Lifecycle Operation
+
+  - term: JMX
+    definition: Java Management Extensions - a standard for managing and monitoring Java applications. Tomcat exposes server state as JMX MBeans.
+    category: Monitoring
+
+  - term: MBean
+    definition: A managed bean exposing attributes and operations via JMX. Tomcat uses MBeans for connector statistics, session counts, and thread information.
+    category: Monitoring
+
+  - term: Thread Pool
+    definition: The pool of worker threads that process incoming HTTP requests. Configured per connector with minimum and maximum sizes.
+    category: Configuration
+
+  - term: Application Server Role
+    definition: A Tomcat user role controlling access to manager interfaces. Roles include manager-gui, manager-script, manager-jmx, and manager-status.
+    values:
+      - manager-gui
+      - manager-script
+      - manager-jmx
+      - manager-status
+    category: Security
+
+  - term: Parallel Deployment
+    definition: Tomcat's ability to deploy multiple versions of the same web application simultaneously, routing new sessions to the new version.
+    category: Feature
+
+lifecycle_states:
+  - state: running
+    description: Application is deployed and accepting requests
+  - state: stopped
+    description: Application is deployed but not accepting requests
+  - state: unknown
+    description: Application state cannot be determined

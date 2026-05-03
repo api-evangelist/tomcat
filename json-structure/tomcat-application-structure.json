@@ -1,0 +1,10 @@
+{
+  "name": "TomcatApplication",
+  "description": "Apache Tomcat deployed web application status structure",
+  "properties": [
+    { "name": "path", "type": "string", "required": true, "description": "Application context path (e.g., /myapp)" },
+    { "name": "status", "type": "string", "required": true, "description": "running | stopped | unknown" },
+    { "name": "sessions", "type": "integer", "required": false, "description": "Active session count" },
+    { "name": "name", "type": "string", "required": false, "description": "Application directory or WAR name" }
+  ]
+}

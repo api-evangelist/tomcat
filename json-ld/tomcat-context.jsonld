@@ -1,0 +1,20 @@
+{
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "tomcat": "https://tomcat.apache.org/tomcat-10.1-doc/#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "WebApplication": "schema:SoftwareApplication",
+    "Server": "schema:SoftwareApplication",
+    "Session": "tomcat:Session",
+    "path": "tomcat:contextPath",
+    "status": "schema:actionStatus",
+    "sessions": "tomcat:sessionCount",
+    "name": "schema:name",
+    "version": "schema:version",
+    "description": "schema:description",
+    "url": {
+      "@id": "schema:url",
+      "@type": "@id"
+    }
+  }
+}

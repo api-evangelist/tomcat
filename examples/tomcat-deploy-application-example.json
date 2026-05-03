@@ -1,0 +1,18 @@
+{
+  "request": {
+    "method": "PUT",
+    "url": "http://localhost:8080/manager/text/deploy?path=/myapp&update=true",
+    "headers": {
+      "Authorization": "Basic {base64(admin:password)}",
+      "Content-Type": "application/octet-stream"
+    },
+    "body": "<binary WAR file content>"
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "text/plain;charset=utf-8"
+    },
+    "body": "OK - Deployed application at context path [/myapp]"
+  }
+}

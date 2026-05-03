@@ -1,0 +1,16 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "http://localhost:8080/manager/text/list",
+    "headers": {
+      "Authorization": "Basic {base64(admin:password)}"
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "text/plain;charset=utf-8"
+    },
+    "body": "OK - Listed applications for virtual host localhost\n/webdav:running:0:webdav\n/examples:running:0:examples\n/manager:running:0:manager\n/:running:0:ROOT\n/myapp:running:5:myapp"
+  }
+}

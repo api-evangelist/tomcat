@@ -1,0 +1,71 @@
+extends: spectral:oas
+rules:
+  # Tomcat Manager uses text/plain responses
+  tomcat-text-plain-responses:
+    description: Tomcat Manager text API returns text/plain responses
+    message: Text interface operations should return text/plain content type
+    severity: warn
+    given: "$.paths[/text/*][get,put,post,delete].responses.200.content"
+    then:
+      function: defined
+
+  # Tomcat uses Basic auth
+  tomcat-basic-auth:
+    description: Tomcat Manager requires HTTP Basic authentication
+    message: Security scheme should be HTTP Basic auth
+    severity: error
+    given: "$.components.securitySchemes"
+    then:
+      function: defined
+
+  # All operations must have operationId
+  tomcat-operation-id-required:
+    description: All operations must have an operationId
+    message: Operation is missing an operationId
+    severity: error
+    given: "$.paths[*][get,post,put,patch,delete]"
+    then:
+      field: operationId
+      function: defined
+
+  # Manager text paths should start with /text/
+  tomcat-text-path-prefix:
+    description: Manager text interface paths should use /text/ prefix
+    message: Text interface paths should start with /text/
+    severity: info
+    given: "$.paths[*]~"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^(/text/|/status|/jmxproxy).*$"
+
+  # Destructive operations should be documented
+  tomcat-destructive-operations:
+    description: Destructive operations must have clear descriptions
+    message: Operations that modify server state must include descriptions
+    severity: error
+    given: "$.paths[*][get,put,post,delete]"
+    then:
+      field: description
+      function: defined
+
+  # Summaries must use Title Case
+  tomcat-summary-title-case:
+    description: Operation summaries must use Title Case
+    message: "{{value}} summary should use Title Case"
+    severity: warn
+    given: "$.paths[*][get,post,put,patch,delete].summary"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[A-Z][A-Za-z0-9 ()-]*$"
+
+  # Operations must have tags
+  tomcat-tags-required:
+    description: All operations must be tagged
+    message: Operation is missing tags for grouping
+    severity: warn
+    given: "$.paths[*][get,post,put,patch,delete]"
+    then:
+      field: tags
+      function: defined
