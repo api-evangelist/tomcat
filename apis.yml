@@ -101,7 +101,7 @@ common:
     url: https://tomcat.apache.org/tomcat-10.1-doc/manager-howto.html
   - type: Downloads
     url: https://tomcat.apache.org/download-10.cgi
-  - type: GitHub Repository
+  - type: GitHubRepository
     url: https://github.com/apache/tomcat
   - type: Apache Software Foundation
     url: https://www.apache.org/
@@ -109,7 +109,7 @@ common:
     url: https://tomcat.apache.org/lists.html
   - type: Security
     url: https://tomcat.apache.org/security.html
-  - type: Changelog
+  - type: ChangeLog
     url: https://tomcat.apache.org/tomcat-10.1-doc/changelog.html
 maintainers:
   - FN: Kin Lane
