@@ -1,0 +1,176 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Apache Tomcat Manager API — SSL
+  description: 'Apache Tomcat Manager API — SSL. 4 operations. Lead operation: Get SSL Connector Certificates. Self-contained
+    Naftiko capability covering one Tomcat business surface.'
+  tags:
+  - Tomcat
+  - SSL
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    TOMCAT_API_KEY: TOMCAT_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: manager-ssl
+    baseUri: http://localhost:8080/manager
+    description: Apache Tomcat Manager API — SSL business capability. Self-contained, no shared references.
+    resources:
+    - name: text-sslConnectorCerts
+      path: /text/sslConnectorCerts
+      operations:
+      - name: getsslcertificates
+        method: GET
+        description: Get SSL Connector Certificates
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: text-sslConnectorCiphers
+      path: /text/sslConnectorCiphers
+      operations:
+      - name: getsslciphers
+        method: GET
+        description: Get SSL Connector Ciphers
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: text-sslConnectorTrustedCerts
+      path: /text/sslConnectorTrustedCerts
+      operations:
+      - name: getssltrustedcertificates
+        method: GET
+        description: Get SSL Trusted Certificates
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: text-sslReload
+      path: /text/sslReload
+      operations:
+      - name: reloadsslconfiguration
+        method: GET
+        description: Reload SSL Configuration
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: tlsHostName
+          in: query
+          type: string
+          description: Specific TLS virtual host name to reload
+    authentication:
+      type: basic
+      username: '{{env.TOMCAT_USER}}'
+      password: '{{env.TOMCAT_PASS}}'
+  exposes:
+  - type: rest
+    namespace: manager-ssl-rest
+    port: 8080
+    description: REST adapter for Apache Tomcat Manager API — SSL. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/text/sslconnectorcerts
+      name: text-sslconnectorcerts
+      description: REST surface for text-sslConnectorCerts.
+      operations:
+      - method: GET
+        name: getsslcertificates
+        description: Get SSL Connector Certificates
+        call: manager-ssl.getsslcertificates
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/text/sslconnectorciphers
+      name: text-sslconnectorciphers
+      description: REST surface for text-sslConnectorCiphers.
+      operations:
+      - method: GET
+        name: getsslciphers
+        description: Get SSL Connector Ciphers
+        call: manager-ssl.getsslciphers
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/text/sslconnectortrustedcerts
+      name: text-sslconnectortrustedcerts
+      description: REST surface for text-sslConnectorTrustedCerts.
+      operations:
+      - method: GET
+        name: getssltrustedcertificates
+        description: Get SSL Trusted Certificates
+        call: manager-ssl.getssltrustedcertificates
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/text/sslreload
+      name: text-sslreload
+      description: REST surface for text-sslReload.
+      operations:
+      - method: GET
+        name: reloadsslconfiguration
+        description: Reload SSL Configuration
+        call: manager-ssl.reloadsslconfiguration
+        with:
+          tlsHostName: rest.tlsHostName
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: manager-ssl-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Apache Tomcat Manager API — SSL. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: get-ssl-connector-certificates
+      description: Get SSL Connector Certificates
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: manager-ssl.getsslcertificates
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-ssl-connector-ciphers
+      description: Get SSL Connector Ciphers
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: manager-ssl.getsslciphers
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-ssl-trusted-certificates
+      description: Get SSL Trusted Certificates
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: manager-ssl.getssltrustedcertificates
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: reload-ssl-configuration
+      description: Reload SSL Configuration
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: manager-ssl.reloadsslconfiguration
+      with:
+        tlsHostName: tools.tlsHostName
+      outputParameters:
+      - type: object
+        mapping: $.

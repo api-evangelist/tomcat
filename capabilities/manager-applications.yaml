@@ -1,0 +1,388 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Apache Tomcat Manager API — Applications
+  description: 'Apache Tomcat Manager API — Applications. 7 operations. Lead operation: Deploy Application From Path. Self-contained
+    Naftiko capability covering one Tomcat business surface.'
+  tags:
+  - Tomcat
+  - Applications
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    TOMCAT_API_KEY: TOMCAT_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: manager-applications
+    baseUri: http://localhost:8080/manager
+    description: Apache Tomcat Manager API — Applications business capability. Self-contained, no shared references.
+    resources:
+    - name: text-deploy
+      path: /text/deploy
+      operations:
+      - name: deployfrompath
+        method: GET
+        description: Deploy Application From Path
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: path
+          in: query
+          type: string
+          description: Context path for the application (must start with /)
+          required: true
+        - name: war
+          in: query
+          type: string
+          description: URL or path to WAR file or directory
+        - name: config
+          in: query
+          type: string
+          description: URL to a Context configuration XML file
+        - name: update
+          in: query
+          type: boolean
+          description: Undeploy existing app before deploying
+        - name: tag
+          in: query
+          type: string
+          description: Tag name to associate with deployment
+        - name: version
+          in: query
+          type: string
+          description: Version string for parallel deployments
+      - name: deploywarfile
+        method: PUT
+        description: Deploy WAR File
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: path
+          in: query
+          type: string
+          description: Context path for the application
+          required: true
+        - name: update
+          in: query
+          type: boolean
+        - name: tag
+          in: query
+          type: string
+        - name: config
+          in: query
+          type: string
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: text-list
+      path: /text/list
+      operations:
+      - name: listapplications
+        method: GET
+        description: List Applications
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: text-reload
+      path: /text/reload
+      operations:
+      - name: reloadapplication
+        method: GET
+        description: Reload Application
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: path
+          in: query
+          type: string
+          description: Context path of the application to reload
+          required: true
+        - name: version
+          in: query
+          type: string
+    - name: text-start
+      path: /text/start
+      operations:
+      - name: startapplication
+        method: GET
+        description: Start Application
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: path
+          in: query
+          type: string
+          description: Context path of the application to start
+          required: true
+        - name: version
+          in: query
+          type: string
+    - name: text-stop
+      path: /text/stop
+      operations:
+      - name: stopapplication
+        method: GET
+        description: Stop Application
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: path
+          in: query
+          type: string
+          description: Context path of the application to stop
+          required: true
+        - name: version
+          in: query
+          type: string
+    - name: text-undeploy
+      path: /text/undeploy
+      operations:
+      - name: undeployapplication
+        method: GET
+        description: Undeploy Application
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: path
+          in: query
+          type: string
+          description: Context path of the application to undeploy
+          required: true
+        - name: version
+          in: query
+          type: string
+    authentication:
+      type: basic
+      username: '{{env.TOMCAT_USER}}'
+      password: '{{env.TOMCAT_PASS}}'
+  exposes:
+  - type: rest
+    namespace: manager-applications-rest
+    port: 8080
+    description: REST adapter for Apache Tomcat Manager API — Applications. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/text/deploy
+      name: text-deploy
+      description: REST surface for text-deploy.
+      operations:
+      - method: GET
+        name: deployfrompath
+        description: Deploy Application From Path
+        call: manager-applications.deployfrompath
+        with:
+          path: rest.path
+          war: rest.war
+          config: rest.config
+          update: rest.update
+          tag: rest.tag
+          version: rest.version
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: deploywarfile
+        description: Deploy WAR File
+        call: manager-applications.deploywarfile
+        with:
+          path: rest.path
+          update: rest.update
+          tag: rest.tag
+          config: rest.config
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/text/list
+      name: text-list
+      description: REST surface for text-list.
+      operations:
+      - method: GET
+        name: listapplications
+        description: List Applications
+        call: manager-applications.listapplications
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/text/reload
+      name: text-reload
+      description: REST surface for text-reload.
+      operations:
+      - method: GET
+        name: reloadapplication
+        description: Reload Application
+        call: manager-applications.reloadapplication
+        with:
+          path: rest.path
+          version: rest.version
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/text/start
+      name: text-start
+      description: REST surface for text-start.
+      operations:
+      - method: GET
+        name: startapplication
+        description: Start Application
+        call: manager-applications.startapplication
+        with:
+          path: rest.path
+          version: rest.version
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/text/stop
+      name: text-stop
+      description: REST surface for text-stop.
+      operations:
+      - method: GET
+        name: stopapplication
+        description: Stop Application
+        call: manager-applications.stopapplication
+        with:
+          path: rest.path
+          version: rest.version
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/text/undeploy
+      name: text-undeploy
+      description: REST surface for text-undeploy.
+      operations:
+      - method: GET
+        name: undeployapplication
+        description: Undeploy Application
+        call: manager-applications.undeployapplication
+        with:
+          path: rest.path
+          version: rest.version
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: manager-applications-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Apache Tomcat Manager API — Applications. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: deploy-application-path
+      description: Deploy Application From Path
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: manager-applications.deployfrompath
+      with:
+        path: tools.path
+        war: tools.war
+        config: tools.config
+        update: tools.update
+        tag: tools.tag
+        version: tools.version
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: deploy-war-file
+      description: Deploy WAR File
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: manager-applications.deploywarfile
+      with:
+        path: tools.path
+        update: tools.update
+        tag: tools.tag
+        config: tools.config
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-applications
+      description: List Applications
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: manager-applications.listapplications
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: reload-application
+      description: Reload Application
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: manager-applications.reloadapplication
+      with:
+        path: tools.path
+        version: tools.version
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: start-application
+      description: Start Application
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: manager-applications.startapplication
+      with:
+        path: tools.path
+        version: tools.version
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: stop-application
+      description: Stop Application
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: manager-applications.stopapplication
+      with:
+        path: tools.path
+        version: tools.version
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: undeploy-application
+      description: Undeploy Application
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: manager-applications.undeployapplication
+      with:
+        path: tools.path
+        version: tools.version
+      outputParameters:
+      - type: object
+        mapping: $.

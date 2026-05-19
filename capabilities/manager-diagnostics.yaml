@@ -1,0 +1,216 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Apache Tomcat Manager API — Diagnostics
+  description: 'Apache Tomcat Manager API — Diagnostics. 5 operations. Lead operation: Find Memory Leaks. Self-contained Naftiko
+    capability covering one Tomcat business surface.'
+  tags:
+  - Tomcat
+  - Diagnostics
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    TOMCAT_API_KEY: TOMCAT_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: manager-diagnostics
+    baseUri: http://localhost:8080/manager
+    description: Apache Tomcat Manager API — Diagnostics business capability. Self-contained, no shared references.
+    resources:
+    - name: text-findleaks
+      path: /text/findleaks
+      operations:
+      - name: findmemoryleaks
+        method: GET
+        description: Find Memory Leaks
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: statusLine
+          in: query
+          type: boolean
+    - name: text-resources
+      path: /text/resources
+      operations:
+      - name: listglobalresources
+        method: GET
+        description: List Global JNDI Resources
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: type
+          in: query
+          type: string
+          description: Filter by Java class name (e.g., javax.sql.DataSource)
+    - name: text-serverinfo
+      path: /text/serverinfo
+      operations:
+      - name: getserverinfo
+        method: GET
+        description: Get Server Info
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: text-threaddump
+      path: /text/threaddump
+      operations:
+      - name: getthreaddump
+        method: GET
+        description: Get Thread Dump
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: text-vminfo
+      path: /text/vminfo
+      operations:
+      - name: getvminfo
+        method: GET
+        description: Get VM Info
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: basic
+      username: '{{env.TOMCAT_USER}}'
+      password: '{{env.TOMCAT_PASS}}'
+  exposes:
+  - type: rest
+    namespace: manager-diagnostics-rest
+    port: 8080
+    description: REST adapter for Apache Tomcat Manager API — Diagnostics. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/text/findleaks
+      name: text-findleaks
+      description: REST surface for text-findleaks.
+      operations:
+      - method: GET
+        name: findmemoryleaks
+        description: Find Memory Leaks
+        call: manager-diagnostics.findmemoryleaks
+        with:
+          statusLine: rest.statusLine
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/text/resources
+      name: text-resources
+      description: REST surface for text-resources.
+      operations:
+      - method: GET
+        name: listglobalresources
+        description: List Global JNDI Resources
+        call: manager-diagnostics.listglobalresources
+        with:
+          type: rest.type
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/text/serverinfo
+      name: text-serverinfo
+      description: REST surface for text-serverinfo.
+      operations:
+      - method: GET
+        name: getserverinfo
+        description: Get Server Info
+        call: manager-diagnostics.getserverinfo
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/text/threaddump
+      name: text-threaddump
+      description: REST surface for text-threaddump.
+      operations:
+      - method: GET
+        name: getthreaddump
+        description: Get Thread Dump
+        call: manager-diagnostics.getthreaddump
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/text/vminfo
+      name: text-vminfo
+      description: REST surface for text-vminfo.
+      operations:
+      - method: GET
+        name: getvminfo
+        description: Get VM Info
+        call: manager-diagnostics.getvminfo
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: manager-diagnostics-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Apache Tomcat Manager API — Diagnostics. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: find-memory-leaks
+      description: Find Memory Leaks
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: manager-diagnostics.findmemoryleaks
+      with:
+        statusLine: tools.statusLine
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-global-jndi-resources
+      description: List Global JNDI Resources
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: manager-diagnostics.listglobalresources
+      with:
+        type: tools.type
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-server-info
+      description: Get Server Info
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: manager-diagnostics.getserverinfo
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-thread-dump
+      description: Get Thread Dump
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: manager-diagnostics.getthreaddump
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-vm-info
+      description: Get VM Info
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: manager-diagnostics.getvminfo
+      outputParameters:
+      - type: object
+        mapping: $.

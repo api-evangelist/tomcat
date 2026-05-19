@@ -1,0 +1,80 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Apache Tomcat Manager API — Configuration
+  description: 'Apache Tomcat Manager API — Configuration. 1 operations. Lead operation: Save Configuration. Self-contained
+    Naftiko capability covering one Tomcat business surface.'
+  tags:
+  - Tomcat
+  - Configuration
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    TOMCAT_API_KEY: TOMCAT_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: manager-configuration
+    baseUri: http://localhost:8080/manager
+    description: Apache Tomcat Manager API — Configuration business capability. Self-contained, no shared references.
+    resources:
+    - name: text-save
+      path: /text/save
+      operations:
+      - name: saveconfiguration
+        method: GET
+        description: Save Configuration
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: path
+          in: query
+          type: string
+          description: Context path to save specific application context
+    authentication:
+      type: basic
+      username: '{{env.TOMCAT_USER}}'
+      password: '{{env.TOMCAT_PASS}}'
+  exposes:
+  - type: rest
+    namespace: manager-configuration-rest
+    port: 8080
+    description: REST adapter for Apache Tomcat Manager API — Configuration. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/text/save
+      name: text-save
+      description: REST surface for text-save.
+      operations:
+      - method: GET
+        name: saveconfiguration
+        description: Save Configuration
+        call: manager-configuration.saveconfiguration
+        with:
+          path: rest.path
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: manager-configuration-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Apache Tomcat Manager API — Configuration. One tool per consumed operation, routed inline
+      through this capability's consumes block.
+    tools:
+    - name: save-configuration
+      description: Save Configuration
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: manager-configuration.saveconfiguration
+      with:
+        path: tools.path
+      outputParameters:
+      - type: object
+        mapping: $.
