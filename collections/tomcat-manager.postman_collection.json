@@ -1,0 +1,2189 @@
+{
+  "item": [
+    {
+      "id": "e4b23ff3-8f09-4420-9a05-4db4ca1ac029",
+      "name": "Applications",
+      "description": {
+        "content": "Web application deployment and lifecycle management",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "ecef852e-d35e-4456-9acf-b943f468b120",
+          "name": "List Applications",
+          "request": {
+            "name": "List Applications",
+            "description": {
+              "content": "Returns a list of all deployed web applications on the virtual host.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "text",
+                "list"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "cb5522ec-0433-44b2-8286-f38c749949c0",
+              "name": "Plain text list of applications",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "text",
+                    "list"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "OK - Listed applications for virtual host localhost\n/webdav:running:0:webdav\n/examples:running:0:examples\n/manager:running:0:manager\n/:running:0:ROOT\n",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "614bc9f1-0dac-43c2-aeed-f68ea0306cff",
+          "name": "Deploy Application From Path",
+          "request": {
+            "name": "Deploy Application From Path",
+            "description": {
+              "content": "Deploys a web application from a local WAR file or directory path on the server filesystem.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "text",
+                "deploy"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "path",
+                  "value": "<string>",
+                  "description": "(Required) Context path for the application (must start with /)"
+                },
+                {
+                  "disabled": false,
+                  "key": "war",
+                  "value": "<string>",
+                  "description": "URL or path to WAR file or directory"
+                },
+                {
+                  "disabled": false,
+                  "key": "config",
+                  "value": "<string>",
+                  "description": "URL to a Context configuration XML file"
+                },
+                {
+                  "disabled": false,
+                  "key": "update",
+                  "value": "false",
+                  "description": "Undeploy existing app before deploying"
+                },
+                {
+                  "disabled": false,
+                  "key": "tag",
+                  "value": "<string>",
+                  "description": "Tag name to associate with deployment"
+                },
+                {
+                  "disabled": false,
+                  "key": "version",
+                  "value": "<string>",
+                  "description": "Version string for parallel deployments"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c0ab5d21-d477-4fe6-bd47-c1ea042a5d96",
+              "name": "Deployment result",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "text",
+                    "deploy"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "path",
+                      "value": "/myapp"
+                    },
+                    {
+                      "key": "war",
+                      "value": "file:/path/to/webapp.war"
+                    },
+                    {
+                      "key": "config",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "update",
+                      "value": "false"
+                    },
+                    {
+                      "key": "tag",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "version",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "69cb36c0-d5d5-40c9-a6dc-658209f4cc8f",
+          "name": "Deploy WAR File",
+          "request": {
+            "name": "Deploy WAR File",
+            "description": {
+              "content": "Deploys a WAR file uploaded via HTTP PUT request body.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "text",
+                "deploy"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "path",
+                  "value": "<string>",
+                  "description": "(Required) Context path for the application"
+                },
+                {
+                  "disabled": false,
+                  "key": "update",
+                  "value": "false"
+                },
+                {
+                  "disabled": false,
+                  "key": "tag",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "config",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/octet-stream"
+              },
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "<binary>"
+            }
+          },
+          "response": [
+            {
+              "id": "06d8cace-86ba-41ed-8b77-6151efdcc975",
+              "name": "Deployment result",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "text",
+                    "deploy"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "path",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "update",
+                      "value": "false"
+                    },
+                    {
+                      "key": "tag",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "config",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<binary>"
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f729e564-00bd-4812-b1eb-bcea3b2d813d",
+          "name": "Undeploy Application",
+          "request": {
+            "name": "Undeploy Application",
+            "description": {
+              "content": "Removes a web application and its files from the server. WARNING: This permanently deletes application artifacts from the appBase directory.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "text",
+                "undeploy"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "path",
+                  "value": "<string>",
+                  "description": "(Required) Context path of the application to undeploy"
+                },
+                {
+                  "disabled": false,
+                  "key": "version",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "06e45183-70ae-4765-9b4c-9daa4c93050a",
+              "name": "Undeploy result",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "text",
+                    "undeploy"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "path",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "version",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d82c924e-bf1a-4c8a-8a35-11277e91e631",
+          "name": "Start Application",
+          "request": {
+            "name": "Start Application",
+            "description": {
+              "content": "Starts a previously stopped web application.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "text",
+                "start"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "path",
+                  "value": "<string>",
+                  "description": "(Required) Context path of the application to start"
+                },
+                {
+                  "disabled": false,
+                  "key": "version",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7cb61502-3215-4a34-98b1-1b5dc9b1bc79",
+              "name": "Start result",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "text",
+                    "start"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "path",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "version",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "637da553-8e01-4029-8fb9-b8a0b2fe579e",
+          "name": "Stop Application",
+          "request": {
+            "name": "Stop Application",
+            "description": {
+              "content": "Stops a running web application, making it unavailable without undeploying.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "text",
+                "stop"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "path",
+                  "value": "<string>",
+                  "description": "(Required) Context path of the application to stop"
+                },
+                {
+                  "disabled": false,
+                  "key": "version",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "42a85842-f659-4811-a451-b5edfb86e094",
+              "name": "Stop result",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "text",
+                    "stop"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "path",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "version",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1854edd1-09b3-42b3-aa45-59a931aba957",
+          "name": "Reload Application",
+          "request": {
+            "name": "Reload Application",
+            "description": {
+              "content": "Reloads a web application without full shutdown, picking up changes in WEB-INF/classes and WEB-INF/lib.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "text",
+                "reload"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "path",
+                  "value": "<string>",
+                  "description": "(Required) Context path of the application to reload"
+                },
+                {
+                  "disabled": false,
+                  "key": "version",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8aa9e5cd-811d-4e6c-8e92-4eddcd64d356",
+              "name": "Reload result",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "text",
+                    "reload"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "path",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "version",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "916eaa92-aef4-4b24-a210-4cf778fde055",
+      "name": "Sessions",
+      "description": {
+        "content": "Session management and statistics",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "8787d6c8-7a03-408d-ab63-5cd5fc550e03",
+          "name": "Get Session Statistics",
+          "request": {
+            "name": "Get Session Statistics",
+            "description": {
+              "content": "Returns session count statistics grouped by inactivity duration.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "text",
+                "sessions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "path",
+                  "value": "<string>",
+                  "description": "(Required) Context path of the application"
+                },
+                {
+                  "disabled": false,
+                  "key": "version",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "86c69d9f-d511-428e-8618-c7d241b4d794",
+              "name": "Session statistics",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "text",
+                    "sessions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "path",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "version",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b8beac5c-41b2-43b3-b802-e83df746d223",
+          "name": "Expire Sessions",
+          "request": {
+            "name": "Expire Sessions",
+            "description": {
+              "content": "Expires sessions that have been idle for more than the specified number of minutes.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "text",
+                "expire"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "path",
+                  "value": "<string>",
+                  "description": "(Required) Context path of the application"
+                },
+                {
+                  "disabled": false,
+                  "key": "idle",
+                  "value": "<integer>",
+                  "description": "(Required) Minutes of inactivity (0 to expire all sessions)"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "bf0b9b79-c180-4315-b626-8dbf03542d4b",
+              "name": "Expiry result",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "text",
+                    "expire"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "path",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "idle",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "fc694afd-d089-4271-a4e7-4dc56410c0f8",
+      "name": "Diagnostics",
+      "description": {
+        "content": "Server diagnostics and thread management",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "cf2b3c97-c3ee-4b70-9b1d-68ed151a9dd1",
+          "name": "Get Server Info",
+          "request": {
+            "name": "Get Server Info",
+            "description": {
+              "content": "Returns OS properties, JVM properties, and Tomcat version information.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "text",
+                "serverinfo"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "43acaacc-2e85-457c-9526-25c1e96a589b",
+              "name": "Server information",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "text",
+                    "serverinfo"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "00b340c0-a25e-441d-9546-41878f45e867",
+          "name": "List Global JNDI Resources",
+          "request": {
+            "name": "List Global JNDI Resources",
+            "description": {
+              "content": "Returns a list of global JNDI resources configured in Tomcat.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "text",
+                "resources"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "type",
+                  "value": "<string>",
+                  "description": "Filter by Java class name (e.g., javax.sql.DataSource)"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "647eee66-564d-4df1-bd08-1de92f08f0df",
+              "name": "List of JNDI resources",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "text",
+                    "resources"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "type",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "636569b2-1072-41ec-a025-28a0b7442f1b",
+          "name": "Find Memory Leaks",
+          "request": {
+            "name": "Find Memory Leaks",
+            "description": {
+              "content": "Identifies web applications that have caused memory leaks upon reload. WARNING: Triggers full garbage collection. Use with caution in production.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "text",
+                "findleaks"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "statusLine",
+                  "value": "false"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c6ce09d8-4768-497c-bf01-ee5327dc37b3",
+              "name": "Memory leak report",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "text",
+                    "findleaks"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "statusLine",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2ec54e09-46a7-4b6a-8ccf-78b37db8507f",
+          "name": "Get Thread Dump",
+          "request": {
+            "name": "Get Thread Dump",
+            "description": {
+              "content": "Returns a full thread dump of all JVM threads.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "text",
+                "threaddump"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ef8a54d1-b95d-4ed8-9390-5b0cd79e2592",
+              "name": "Thread dump output",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "text",
+                    "threaddump"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d0612cd8-8ed5-4c94-af26-4087234de52f",
+          "name": "Get VM Info",
+          "request": {
+            "name": "Get VM Info",
+            "description": {
+              "content": "Returns JVM information including memory usage and system properties.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "text",
+                "vminfo"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "deef7175-1a6c-40b3-8c9e-164c7405d182",
+              "name": "VM information",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "text",
+                    "vminfo"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "4409fd70-4acb-4a75-bf0c-d206ff61e345",
+      "name": "SSL",
+      "description": {
+        "content": "SSL/TLS certificate and cipher management",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "9a964792-daab-439d-b1c1-7328eeeeca1f",
+          "name": "Get SSL Connector Ciphers",
+          "request": {
+            "name": "Get SSL Connector Ciphers",
+            "description": {
+              "content": "Returns the SSL/TLS ciphers currently in use for each SSL connector.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "text",
+                "sslConnectorCiphers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "817eaf48-aa06-4855-84e6-5687712c4eb1",
+              "name": "SSL cipher information",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "text",
+                    "sslConnectorCiphers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f5210681-8b3b-4aed-912b-b8495864469b",
+          "name": "Get SSL Connector Certificates",
+          "request": {
+            "name": "Get SSL Connector Certificates",
+            "description": {
+              "content": "Returns certificate chain information for each SSL connector.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "text",
+                "sslConnectorCerts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b62d0404-0c0d-4b15-82d2-8ad8387cc599",
+              "name": "SSL certificate chain information",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "text",
+                    "sslConnectorCerts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "898850dc-cba1-455d-be25-d9424c0a3da6",
+          "name": "Get SSL Trusted Certificates",
+          "request": {
+            "name": "Get SSL Trusted Certificates",
+            "description": {
+              "content": "Returns trusted certificate information for each SSL connector.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "text",
+                "sslConnectorTrustedCerts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "35282989-6436-44ca-906e-f23a8c079f30",
+              "name": "Trusted certificate information",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "text",
+                    "sslConnectorTrustedCerts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8b67ca76-2f1c-4a99-b7ae-1ead9816636b",
+          "name": "Reload SSL Configuration",
+          "request": {
+            "name": "Reload SSL Configuration",
+            "description": {
+              "content": "Reloads SSL/TLS certificate and key files without re-parsing server.xml. Optionally targets a specific TLS virtual host.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "text",
+                "sslReload"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "tlsHostName",
+                  "value": "<string>",
+                  "description": "Specific TLS virtual host name to reload"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4a0819e1-68d4-41c4-a74f-c99b7858f24a",
+              "name": "SSL reload result",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "text",
+                    "sslReload"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "tlsHostName",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "52a3afce-9139-4844-98a5-4a3f0e341f50",
+      "name": "Configuration",
+      "description": {
+        "content": "Server configuration management",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "af4c7559-f6a1-45a4-a1c6-7cb9cb572502",
+          "name": "Save Configuration",
+          "request": {
+            "name": "Save Configuration",
+            "description": {
+              "content": "Saves the current server configuration to server.xml. Optionally saves a specific application context to its context XML file.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "text",
+                "save"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "path",
+                  "value": "<string>",
+                  "description": "Context path to save specific application context"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f18dd526-b258-458e-885a-9e8d87a353f0",
+              "name": "Save result",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "text",
+                    "save"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "path",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "65ab04e3-9d3f-4ff6-b965-a833ee518c9a",
+      "name": "JMX",
+      "description": {
+        "content": "JMX proxy operations for MBean access",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "4baa9340-d762-4c16-9396-0199ae9ffac1",
+          "name": "JMX Proxy",
+          "request": {
+            "name": "JMX Proxy",
+            "description": {
+              "content": "Provides HTTP-based access to JMX MBeans. Supports query, get, set, and invoke operations on server management beans.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "jmxproxy",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "qry",
+                  "value": "<string>",
+                  "description": "JMX query expression (e.g., *:type=RequestProcessor,*)"
+                },
+                {
+                  "disabled": false,
+                  "key": "get",
+                  "value": "<string>",
+                  "description": "MBean name to get attribute from"
+                },
+                {
+                  "disabled": false,
+                  "key": "att",
+                  "value": "<string>",
+                  "description": "Attribute name to get or set"
+                },
+                {
+                  "disabled": false,
+                  "key": "key",
+                  "value": "<string>",
+                  "description": "Key within a CompositeData attribute"
+                },
+                {
+                  "disabled": false,
+                  "key": "set",
+                  "value": "<string>",
+                  "description": "MBean name for attribute setting"
+                },
+                {
+                  "disabled": false,
+                  "key": "val",
+                  "value": "<string>",
+                  "description": "New attribute value"
+                },
+                {
+                  "disabled": false,
+                  "key": "invoke",
+                  "value": "<string>",
+                  "description": "MBean name for method invocation"
+                },
+                {
+                  "disabled": false,
+                  "key": "op",
+                  "value": "<string>",
+                  "description": "Method name to invoke"
+                },
+                {
+                  "disabled": false,
+                  "key": "ps",
+                  "value": "<string>",
+                  "description": "Parameters for method invocation"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b5d5ef9d-5c5a-4bb7-9a49-e0686daaf2ac",
+              "name": "JMX operation result",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "jmxproxy",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "qry",
+                      "value": "*:type=RequestProcessor,*"
+                    },
+                    {
+                      "key": "get",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "att",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "set",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "val",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "invoke",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "op",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "ps",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "6382d909-11a9-4b45-a515-7fc7dd0e4248",
+      "name": "Status",
+      "description": {
+        "content": "Server status and metrics",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "83978ce3-bdcf-4059-814e-6f9603f8c2c5",
+          "name": "Get Server Status",
+          "request": {
+            "name": "Get Server Status",
+            "description": {
+              "content": "Returns server status including connector details, memory usage, and thread statistics.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "status"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "XML",
+                  "value": "<boolean>",
+                  "description": "Return response in XML format"
+                },
+                {
+                  "disabled": false,
+                  "key": "JSON",
+                  "value": "<boolean>",
+                  "description": "Return response in JSON format"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/html"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6554bba4-7642-4a4d-ae80-ffdfe0ee3c88",
+              "name": "Server status",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "XML",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "JSON",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/html"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "http://localhost:8080/manager",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "77c8a986-00fe-42c5-b49f-33707a1ce85c",
+    "name": "Apache Tomcat Manager API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Apache Tomcat Manager application provides an HTTP text interface for deploying, managing, and monitoring Java web applications. Includes application lifecycle management (deploy, start, stop, reload, undeploy), session management, server status, diagnostics (thread dumps, VM info, memory leak detection), SSL/TLS management, JMX proxy access, and configuration persistence.\n\nContact Support:\n Name: Apache Tomcat Users Mailing List",
+      "type": "text/plain"
+    }
+  }
+}

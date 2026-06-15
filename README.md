@@ -1,8 +1,8 @@
-# Apache Tomcat
+# Apache Tomcat (tomcat)
 
-Apache Tomcat is an open-source implementation of Jakarta Servlet, Jakarta Server Pages, and other Jakarta EE technologies, providing a pure Java HTTP web server environment for running Java code. Governed by the Apache Software Foundation.
+Apache Tomcat is an open-source implementation of the Jakarta Servlet, Jakarta Server Pages, and other Jakarta EE technologies, providing a pure Java HTTP web server environment for running Java code. The Tomcat Manager application exposes an HTTP API for deploying, managing, and monitoring web applications. The JMX Proxy Servlet provides programmatic access to JMX MBeans for server diagnostics and configuration. Governed by the Apache Software Foundation.
 
-**URL:** [Visit APIs.json URL](https://raw.githubusercontent.com/api-evangelist/tomcat/refs/heads/main/apis.yml)
+**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/tomcat/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/tomcat/refs/heads/main/apis.yml)
 
 ## Scope
 
@@ -12,90 +12,76 @@ Apache Tomcat is an open-source implementation of Jakarta Servlet, Jakarta Serve
 
 ## Tags
 
- - Application Server, Java, Servlet Container, Web Server, Open Source, Apache
+- Application Server
+- Java
+- Servlet Container
+- Web Server
+- Open Source
+- Apache
 
 ## Timestamps
 
 - **Created:** 2025-01-01
-- **Modified:** 2026-05-03
+- **Modified:** 2026-05-19
 
 ## APIs
 
 ### Apache Tomcat Manager API
 
-HTTP text interface for deploying, managing, and monitoring Java web applications. Includes application lifecycle management, session management, server diagnostics, SSL/TLS management, and JMX proxy access.
+The Apache Tomcat Manager application provides an HTTP text interface for deploying, undeploying, starting, stopping, and reloading web applications. Also includes session management, server status, thread dumps, VM information, SSL/TLS configuration reload, memory leak detection, and configuration saving. Authentication requires roles defined in tomcat-users.xml.
 
-**Human URL:** [https://tomcat.apache.org/tomcat-10.1-doc/manager-howto.html](https://tomcat.apache.org/tomcat-10.1-doc/manager-howto.html)
-
-**Base URL:** http://localhost:8080/manager
+- **Human URL:** [https://tomcat.apache.org/tomcat-10.1-doc/manager-howto.html](https://tomcat.apache.org/tomcat-10.1-doc/manager-howto.html)
+- **Base URL:** `http://localhost:8080/manager`
 
 #### Tags
 
- - Java, Web Server, Application Deployment, Server Management
+- Java
+- Web Server
+- Application Deployment
+- Server Management
 
 #### Properties
 
 - [Documentation](https://tomcat.apache.org/tomcat-10.1-doc/manager-howto.html)
-- [OpenAPI](openapi/tomcat-manager-openapi.yml)
-- [Naftiko Capabilities](capabilities/application-management.yaml)
-- [Spectral Rules](rules/tomcat-rules.yml)
-- [Vocabulary](vocabulary/tomcat-vocabulary.yml)
+- [OpenAPI](https://raw.githubusercontent.com/api-evangelist/tomcat/refs/heads/main/openapi/tomcat-manager-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+- [Spectral Rules](https://raw.githubusercontent.com/api-evangelist/tomcat/refs/heads/main/rules/tomcat-rules.yml)
+- [Vocabulary](https://raw.githubusercontent.com/api-evangelist/tomcat/refs/heads/main/vocabulary/tomcat-vocabulary.yml)
+- [Postman Collection](collections/tomcat-manager.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/tomcat-manager.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
 
 ### Apache Tomcat JMX Proxy API
 
-HTTP access to JMX MBeans for monitoring and diagnostics. Supports query, get, set, and invoke operations.
+The Apache Tomcat JMX Proxy Servlet provides HTTP-based access to JMX MBeans for querying, getting, setting, and invoking operations on server management beans. Useful for server diagnostics, performance monitoring, and dynamic configuration changes without restarting Tomcat.
 
-**Human URL:** [https://tomcat.apache.org/tomcat-10.1-doc/manager-howto.html#Using_the_JMX_Proxy_Servlet](https://tomcat.apache.org/tomcat-10.1-doc/manager-howto.html#Using_the_JMX_Proxy_Servlet)
+- **Human URL:** [https://tomcat.apache.org/tomcat-10.1-doc/manager-howto.html#Using_the_JMX_Proxy_Servlet](https://tomcat.apache.org/tomcat-10.1-doc/manager-howto.html#Using_the_JMX_Proxy_Servlet)
+- **Base URL:** `http://localhost:8080/manager/jmxproxy`
 
-## Artifacts
+#### Tags
 
-### OpenAPI Specifications
+- JMX
+- Monitoring
+- Java
+- Diagnostics
 
-- [openapi/tomcat-manager-openapi.yml](openapi/tomcat-manager-openapi.yml) — Manager text interface and JMX proxy API
+#### Properties
 
-### Spectral Rules
-
-- [rules/tomcat-rules.yml](rules/tomcat-rules.yml) — Governance ruleset for Tomcat Manager API conventions
-
-### Naftiko Capabilities
-
-| Capability | Description |
-|------------|-------------|
-| [application-management.yaml](capabilities/application-management.yaml) | Deploy, lifecycle, diagnostics for Java web applications (7 MCP tools) |
-
-**Shared:** [capabilities/shared/tomcat-manager.yaml](capabilities/shared/tomcat-manager.yaml)
-
-### JSON Structure
-
-- [json-structure/tomcat-application-structure.json](json-structure/tomcat-application-structure.json)
-
-### JSON-LD
-
-- [json-ld/tomcat-context.jsonld](json-ld/tomcat-context.jsonld)
-
-### Examples
-
-- [examples/tomcat-list-applications-example.json](examples/tomcat-list-applications-example.json)
-- [examples/tomcat-deploy-application-example.json](examples/tomcat-deploy-application-example.json)
-
-### Vocabulary
-
-- [vocabulary/tomcat-vocabulary.yml](vocabulary/tomcat-vocabulary.yml)
+- [Documentation](https://tomcat.apache.org/tomcat-10.1-doc/manager-howto.html#Using_the_JMX_Proxy_Servlet)
+- [Postman Collection](collections/tomcat-manager.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/tomcat-manager.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
 
 ## Common Properties
 
 - [Website](https://tomcat.apache.org/)
 - [Documentation](https://tomcat.apache.org/tomcat-10.1-doc/)
-- [Manager API Documentation](https://tomcat.apache.org/tomcat-10.1-doc/manager-howto.html)
+- [Manager  A P I  Documentation](https://tomcat.apache.org/tomcat-10.1-doc/manager-howto.html)
 - [Downloads](https://tomcat.apache.org/download-10.cgi)
 - [GitHub Repository](https://github.com/apache/tomcat)
-- [Apache Software Foundation](https://www.apache.org/)
-- [Mailing Lists](https://tomcat.apache.org/lists.html)
+- [Apache  Software  Foundation](https://www.apache.org/)
+- [Mailing  Lists](https://tomcat.apache.org/lists.html)
 - [Security](https://tomcat.apache.org/security.html)
 - [Changelog](https://tomcat.apache.org/tomcat-10.1-doc/changelog.html)
 
 ## Maintainers
 
 **FN:** Kin Lane
-
 **Email:** kin@apievangelist.com

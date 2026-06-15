@@ -1,0 +1,545 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Apache Tomcat Manager API",
+    "version": "10.1"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Applications",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Applications",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:8080/manager/text/list"
+          },
+          "docs": "Returns a list of all deployed web applications on the virtual host."
+        },
+        {
+          "info": {
+            "name": "Deploy Application From Path",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:8080/manager/text/deploy",
+            "params": [
+              {
+                "name": "path",
+                "value": "/myapp",
+                "type": "query",
+                "description": "Context path for the application (must start with /)"
+              },
+              {
+                "name": "war",
+                "value": "file:/path/to/webapp.war",
+                "type": "query",
+                "description": "URL or path to WAR file or directory"
+              },
+              {
+                "name": "config",
+                "value": "",
+                "type": "query",
+                "description": "URL to a Context configuration XML file"
+              },
+              {
+                "name": "update",
+                "value": "",
+                "type": "query",
+                "description": "Undeploy existing app before deploying"
+              },
+              {
+                "name": "tag",
+                "value": "",
+                "type": "query",
+                "description": "Tag name to associate with deployment"
+              },
+              {
+                "name": "version",
+                "value": "",
+                "type": "query",
+                "description": "Version string for parallel deployments"
+              }
+            ]
+          },
+          "docs": "Deploys a web application from a local WAR file or directory path on the server filesystem."
+        },
+        {
+          "info": {
+            "name": "Deploy WAR File",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "http://localhost:8080/manager/text/deploy",
+            "params": [
+              {
+                "name": "path",
+                "value": "",
+                "type": "query",
+                "description": "Context path for the application"
+              },
+              {
+                "name": "update",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "tag",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "config",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Deploys a WAR file uploaded via HTTP PUT request body."
+        },
+        {
+          "info": {
+            "name": "Undeploy Application",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:8080/manager/text/undeploy",
+            "params": [
+              {
+                "name": "path",
+                "value": "",
+                "type": "query",
+                "description": "Context path of the application to undeploy"
+              },
+              {
+                "name": "version",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Removes a web application and its files from the server. WARNING: This permanently deletes application artifacts from the appBase directory."
+        },
+        {
+          "info": {
+            "name": "Start Application",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:8080/manager/text/start",
+            "params": [
+              {
+                "name": "path",
+                "value": "",
+                "type": "query",
+                "description": "Context path of the application to start"
+              },
+              {
+                "name": "version",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Starts a previously stopped web application."
+        },
+        {
+          "info": {
+            "name": "Stop Application",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:8080/manager/text/stop",
+            "params": [
+              {
+                "name": "path",
+                "value": "",
+                "type": "query",
+                "description": "Context path of the application to stop"
+              },
+              {
+                "name": "version",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Stops a running web application, making it unavailable without undeploying."
+        },
+        {
+          "info": {
+            "name": "Reload Application",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:8080/manager/text/reload",
+            "params": [
+              {
+                "name": "path",
+                "value": "",
+                "type": "query",
+                "description": "Context path of the application to reload"
+              },
+              {
+                "name": "version",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Reloads a web application without full shutdown, picking up changes in WEB-INF/classes and WEB-INF/lib."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Sessions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Session Statistics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:8080/manager/text/sessions",
+            "params": [
+              {
+                "name": "path",
+                "value": "",
+                "type": "query",
+                "description": "Context path of the application"
+              },
+              {
+                "name": "version",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns session count statistics grouped by inactivity duration."
+        },
+        {
+          "info": {
+            "name": "Expire Sessions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:8080/manager/text/expire",
+            "params": [
+              {
+                "name": "path",
+                "value": "",
+                "type": "query",
+                "description": "Context path of the application"
+              },
+              {
+                "name": "idle",
+                "value": "",
+                "type": "query",
+                "description": "Minutes of inactivity (0 to expire all sessions)"
+              }
+            ]
+          },
+          "docs": "Expires sessions that have been idle for more than the specified number of minutes."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Diagnostics",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Server Info",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:8080/manager/text/serverinfo"
+          },
+          "docs": "Returns OS properties, JVM properties, and Tomcat version information."
+        },
+        {
+          "info": {
+            "name": "List Global JNDI Resources",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:8080/manager/text/resources",
+            "params": [
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "Filter by Java class name (e.g., javax.sql.DataSource)"
+              }
+            ]
+          },
+          "docs": "Returns a list of global JNDI resources configured in Tomcat."
+        },
+        {
+          "info": {
+            "name": "Find Memory Leaks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:8080/manager/text/findleaks",
+            "params": [
+              {
+                "name": "statusLine",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Identifies web applications that have caused memory leaks upon reload. WARNING: Triggers full garbage collection. Use with caution in production."
+        },
+        {
+          "info": {
+            "name": "Get Thread Dump",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:8080/manager/text/threaddump"
+          },
+          "docs": "Returns a full thread dump of all JVM threads."
+        },
+        {
+          "info": {
+            "name": "Get VM Info",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:8080/manager/text/vminfo"
+          },
+          "docs": "Returns JVM information including memory usage and system properties."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "SSL",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get SSL Connector Ciphers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:8080/manager/text/sslConnectorCiphers"
+          },
+          "docs": "Returns the SSL/TLS ciphers currently in use for each SSL connector."
+        },
+        {
+          "info": {
+            "name": "Get SSL Connector Certificates",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:8080/manager/text/sslConnectorCerts"
+          },
+          "docs": "Returns certificate chain information for each SSL connector."
+        },
+        {
+          "info": {
+            "name": "Get SSL Trusted Certificates",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:8080/manager/text/sslConnectorTrustedCerts"
+          },
+          "docs": "Returns trusted certificate information for each SSL connector."
+        },
+        {
+          "info": {
+            "name": "Reload SSL Configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:8080/manager/text/sslReload",
+            "params": [
+              {
+                "name": "tlsHostName",
+                "value": "",
+                "type": "query",
+                "description": "Specific TLS virtual host name to reload"
+              }
+            ]
+          },
+          "docs": "Reloads SSL/TLS certificate and key files without re-parsing server.xml. Optionally targets a specific TLS virtual host."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Configuration",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Save Configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:8080/manager/text/save",
+            "params": [
+              {
+                "name": "path",
+                "value": "",
+                "type": "query",
+                "description": "Context path to save specific application context"
+              }
+            ]
+          },
+          "docs": "Saves the current server configuration to server.xml. Optionally saves a specific application context to its context XML file."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Status",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Server Status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:8080/manager/status",
+            "params": [
+              {
+                "name": "XML",
+                "value": "",
+                "type": "query",
+                "description": "Return response in XML format"
+              },
+              {
+                "name": "JSON",
+                "value": "",
+                "type": "query",
+                "description": "Return response in JSON format"
+              }
+            ]
+          },
+          "docs": "Returns server status including connector details, memory usage, and thread statistics."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "JMX",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "JMX Proxy",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:8080/manager/jmxproxy/",
+            "params": [
+              {
+                "name": "qry",
+                "value": "*:type=RequestProcessor,*",
+                "type": "query",
+                "description": "JMX query expression (e.g., *:type=RequestProcessor,*)"
+              },
+              {
+                "name": "get",
+                "value": "",
+                "type": "query",
+                "description": "MBean name to get attribute from"
+              },
+              {
+                "name": "att",
+                "value": "",
+                "type": "query",
+                "description": "Attribute name to get or set"
+              },
+              {
+                "name": "key",
+                "value": "",
+                "type": "query",
+                "description": "Key within a CompositeData attribute"
+              },
+              {
+                "name": "set",
+                "value": "",
+                "type": "query",
+                "description": "MBean name for attribute setting"
+              },
+              {
+                "name": "val",
+                "value": "",
+                "type": "query",
+                "description": "New attribute value"
+              },
+              {
+                "name": "invoke",
+                "value": "",
+                "type": "query",
+                "description": "MBean name for method invocation"
+              },
+              {
+                "name": "op",
+                "value": "",
+                "type": "query",
+                "description": "Method name to invoke"
+              },
+              {
+                "name": "ps",
+                "value": "",
+                "type": "query",
+                "description": "Parameters for method invocation"
+              }
+            ]
+          },
+          "docs": "Provides HTTP-based access to JMX MBeans. Supports query, get, set, and invoke operations on server management beans."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
