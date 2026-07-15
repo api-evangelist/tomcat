@@ -83,6 +83,8 @@ solutions:
   - Java application hosting
   - Enterprise middleware management
 common:
+  - type: AgenticAccess
+    url: agentic-access/tomcat-agentic-access.yml
   - type: VulnerabilityDisclosure
     url: security/tomcat-vulnerability-disclosure.yml
   - type: DomainSecurity
