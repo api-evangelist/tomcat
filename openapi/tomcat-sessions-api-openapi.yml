@@ -1,0 +1,78 @@
+openapi: 3.1.0
+info:
+  title: Apache Tomcat Manager Applications Sessions API
+  description: The Apache Tomcat Manager application provides an HTTP text interface for deploying, managing, and monitoring Java web applications. Includes application lifecycle management (deploy, start, stop, reload, undeploy), session management, server status, diagnostics (thread dumps, VM info, memory leak detection), SSL/TLS management, JMX proxy access, and configuration persistence.
+  version: '10.1'
+  contact:
+    name: Apache Tomcat Users Mailing List
+    url: https://tomcat.apache.org/lists.html
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+servers:
+- url: http://localhost:8080/manager
+  description: Local Tomcat instance (default)
+security:
+- basicAuth: []
+tags:
+- name: Sessions
+  description: Session management and statistics
+paths:
+  /text/sessions:
+    get:
+      operationId: getSessionStats
+      summary: Get Session Statistics
+      description: Returns session count statistics grouped by inactivity duration.
+      tags:
+      - Sessions
+      parameters:
+      - name: path
+        in: query
+        required: true
+        schema:
+          type: string
+        description: Context path of the application
+      - name: version
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Session statistics
+          content:
+            text/plain:
+              schema:
+                type: string
+  /text/expire:
+    get:
+      operationId: expireSessions
+      summary: Expire Sessions
+      description: Expires sessions that have been idle for more than the specified number of minutes.
+      tags:
+      - Sessions
+      parameters:
+      - name: path
+        in: query
+        required: true
+        schema:
+          type: string
+        description: Context path of the application
+      - name: idle
+        in: query
+        required: true
+        schema:
+          type: integer
+        description: Minutes of inactivity (0 to expire all sessions)
+      responses:
+        '200':
+          description: Expiry result
+          content:
+            text/plain:
+              schema:
+                type: string
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: 'HTTP Basic authentication. User must have appropriate role in tomcat-users.xml: manager-script for text interface, manager-jmx for JMX proxy.'

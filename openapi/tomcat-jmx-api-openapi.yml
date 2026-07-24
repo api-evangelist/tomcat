@@ -1,0 +1,87 @@
+openapi: 3.1.0
+info:
+  title: Apache Tomcat Manager Applications JMX API
+  description: The Apache Tomcat Manager application provides an HTTP text interface for deploying, managing, and monitoring Java web applications. Includes application lifecycle management (deploy, start, stop, reload, undeploy), session management, server status, diagnostics (thread dumps, VM info, memory leak detection), SSL/TLS management, JMX proxy access, and configuration persistence.
+  version: '10.1'
+  contact:
+    name: Apache Tomcat Users Mailing List
+    url: https://tomcat.apache.org/lists.html
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+servers:
+- url: http://localhost:8080/manager
+  description: Local Tomcat instance (default)
+security:
+- basicAuth: []
+tags:
+- name: JMX
+  description: JMX proxy operations for MBean access
+paths:
+  /jmxproxy/:
+    get:
+      operationId: jmxProxy
+      summary: JMX Proxy
+      description: Provides HTTP-based access to JMX MBeans. Supports query, get, set, and invoke operations on server management beans.
+      tags:
+      - JMX
+      parameters:
+      - name: qry
+        in: query
+        schema:
+          type: string
+        description: JMX query expression (e.g., *:type=RequestProcessor,*)
+        example: '*:type=RequestProcessor,*'
+      - name: get
+        in: query
+        schema:
+          type: string
+        description: MBean name to get attribute from
+      - name: att
+        in: query
+        schema:
+          type: string
+        description: Attribute name to get or set
+      - name: key
+        in: query
+        schema:
+          type: string
+        description: Key within a CompositeData attribute
+      - name: set
+        in: query
+        schema:
+          type: string
+        description: MBean name for attribute setting
+      - name: val
+        in: query
+        schema:
+          type: string
+        description: New attribute value
+      - name: invoke
+        in: query
+        schema:
+          type: string
+        description: MBean name for method invocation
+      - name: op
+        in: query
+        schema:
+          type: string
+        description: Method name to invoke
+      - name: ps
+        in: query
+        schema:
+          type: string
+        description: Parameters for method invocation
+      responses:
+        '200':
+          description: JMX operation result
+          content:
+            text/plain:
+              schema:
+                type: string
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: 'HTTP Basic authentication. User must have appropriate role in tomcat-users.xml: manager-script for text interface, manager-jmx for JMX proxy.'

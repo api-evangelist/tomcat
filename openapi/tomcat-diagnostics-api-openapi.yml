@@ -1,0 +1,108 @@
+openapi: 3.1.0
+info:
+  title: Apache Tomcat Manager Applications Diagnostics API
+  description: The Apache Tomcat Manager application provides an HTTP text interface for deploying, managing, and monitoring Java web applications. Includes application lifecycle management (deploy, start, stop, reload, undeploy), session management, server status, diagnostics (thread dumps, VM info, memory leak detection), SSL/TLS management, JMX proxy access, and configuration persistence.
+  version: '10.1'
+  contact:
+    name: Apache Tomcat Users Mailing List
+    url: https://tomcat.apache.org/lists.html
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+servers:
+- url: http://localhost:8080/manager
+  description: Local Tomcat instance (default)
+security:
+- basicAuth: []
+tags:
+- name: Diagnostics
+  description: Server diagnostics and thread management
+paths:
+  /text/serverinfo:
+    get:
+      operationId: getServerInfo
+      summary: Get Server Info
+      description: Returns OS properties, JVM properties, and Tomcat version information.
+      tags:
+      - Diagnostics
+      responses:
+        '200':
+          description: Server information
+          content:
+            text/plain:
+              schema:
+                type: string
+  /text/resources:
+    get:
+      operationId: listGlobalResources
+      summary: List Global JNDI Resources
+      description: Returns a list of global JNDI resources configured in Tomcat.
+      tags:
+      - Diagnostics
+      parameters:
+      - name: type
+        in: query
+        schema:
+          type: string
+        description: Filter by Java class name (e.g., javax.sql.DataSource)
+      responses:
+        '200':
+          description: List of JNDI resources
+          content:
+            text/plain:
+              schema:
+                type: string
+  /text/findleaks:
+    get:
+      operationId: findMemoryLeaks
+      summary: Find Memory Leaks
+      description: 'Identifies web applications that have caused memory leaks upon reload. WARNING: Triggers full garbage collection. Use with caution in production.'
+      tags:
+      - Diagnostics
+      parameters:
+      - name: statusLine
+        in: query
+        schema:
+          type: boolean
+          default: false
+      responses:
+        '200':
+          description: Memory leak report
+          content:
+            text/plain:
+              schema:
+                type: string
+  /text/threaddump:
+    get:
+      operationId: getThreadDump
+      summary: Get Thread Dump
+      description: Returns a full thread dump of all JVM threads.
+      tags:
+      - Diagnostics
+      responses:
+        '200':
+          description: Thread dump output
+          content:
+            text/plain:
+              schema:
+                type: string
+  /text/vminfo:
+    get:
+      operationId: getVmInfo
+      summary: Get VM Info
+      description: Returns JVM information including memory usage and system properties.
+      tags:
+      - Diagnostics
+      responses:
+        '200':
+          description: VM information
+          content:
+            text/plain:
+              schema:
+                type: string
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: 'HTTP Basic authentication. User must have appropriate role in tomcat-users.xml: manager-script for text interface, manager-jmx for JMX proxy.'

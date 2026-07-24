@@ -1,0 +1,57 @@
+openapi: 3.1.0
+info:
+  title: Apache Tomcat Manager Applications Status API
+  description: The Apache Tomcat Manager application provides an HTTP text interface for deploying, managing, and monitoring Java web applications. Includes application lifecycle management (deploy, start, stop, reload, undeploy), session management, server status, diagnostics (thread dumps, VM info, memory leak detection), SSL/TLS management, JMX proxy access, and configuration persistence.
+  version: '10.1'
+  contact:
+    name: Apache Tomcat Users Mailing List
+    url: https://tomcat.apache.org/lists.html
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+servers:
+- url: http://localhost:8080/manager
+  description: Local Tomcat instance (default)
+security:
+- basicAuth: []
+tags:
+- name: Status
+  description: Server status and metrics
+paths:
+  /status:
+    get:
+      operationId: getServerStatus
+      summary: Get Server Status
+      description: Returns server status including connector details, memory usage, and thread statistics.
+      tags:
+      - Status
+      parameters:
+      - name: XML
+        in: query
+        schema:
+          type: boolean
+        description: Return response in XML format
+      - name: JSON
+        in: query
+        schema:
+          type: boolean
+        description: Return response in JSON format
+      responses:
+        '200':
+          description: Server status
+          content:
+            text/html:
+              schema:
+                type: string
+            text/xml:
+              schema:
+                type: string
+            application/json:
+              schema:
+                type: object
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: 'HTTP Basic authentication. User must have appropriate role in tomcat-users.xml: manager-script for text interface, manager-jmx for JMX proxy.'

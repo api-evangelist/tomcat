@@ -1,0 +1,240 @@
+openapi: 3.1.0
+info:
+  title: Apache Tomcat Manager Applications API
+  description: The Apache Tomcat Manager application provides an HTTP text interface for deploying, managing, and monitoring Java web applications. Includes application lifecycle management (deploy, start, stop, reload, undeploy), session management, server status, diagnostics (thread dumps, VM info, memory leak detection), SSL/TLS management, JMX proxy access, and configuration persistence.
+  version: '10.1'
+  contact:
+    name: Apache Tomcat Users Mailing List
+    url: https://tomcat.apache.org/lists.html
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+servers:
+- url: http://localhost:8080/manager
+  description: Local Tomcat instance (default)
+security:
+- basicAuth: []
+tags:
+- name: Applications
+  description: Web application deployment and lifecycle management
+paths:
+  /text/list:
+    get:
+      operationId: listApplications
+      summary: List Applications
+      description: Returns a list of all deployed web applications on the virtual host.
+      tags:
+      - Applications
+      responses:
+        '200':
+          description: Plain text list of applications
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: 'OK - Listed applications for virtual host localhost
+
+                  /webdav:running:0:webdav
+
+                  /examples:running:0:examples
+
+                  /manager:running:0:manager
+
+                  /:running:0:ROOT
+
+                  '
+  /text/deploy:
+    get:
+      operationId: deployFromPath
+      summary: Deploy Application From Path
+      description: Deploys a web application from a local WAR file or directory path on the server filesystem.
+      tags:
+      - Applications
+      parameters:
+      - name: path
+        in: query
+        required: true
+        schema:
+          type: string
+        description: Context path for the application (must start with /)
+        example: /myapp
+      - name: war
+        in: query
+        schema:
+          type: string
+        description: URL or path to WAR file or directory
+        example: file:/path/to/webapp.war
+      - name: config
+        in: query
+        schema:
+          type: string
+        description: URL to a Context configuration XML file
+      - name: update
+        in: query
+        schema:
+          type: boolean
+          default: false
+        description: Undeploy existing app before deploying
+      - name: tag
+        in: query
+        schema:
+          type: string
+        description: Tag name to associate with deployment
+      - name: version
+        in: query
+        schema:
+          type: string
+        description: Version string for parallel deployments
+      responses:
+        '200':
+          description: Deployment result
+          content:
+            text/plain:
+              schema:
+                type: string
+    put:
+      operationId: deployWarFile
+      summary: Deploy WAR File
+      description: Deploys a WAR file uploaded via HTTP PUT request body.
+      tags:
+      - Applications
+      parameters:
+      - name: path
+        in: query
+        required: true
+        schema:
+          type: string
+        description: Context path for the application
+      - name: update
+        in: query
+        schema:
+          type: boolean
+          default: false
+      - name: tag
+        in: query
+        schema:
+          type: string
+      - name: config
+        in: query
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/octet-stream:
+            schema:
+              type: string
+              format: binary
+      responses:
+        '200':
+          description: Deployment result
+          content:
+            text/plain:
+              schema:
+                type: string
+  /text/undeploy:
+    get:
+      operationId: undeployApplication
+      summary: Undeploy Application
+      description: 'Removes a web application and its files from the server. WARNING: This permanently deletes application artifacts from the appBase directory.'
+      tags:
+      - Applications
+      parameters:
+      - name: path
+        in: query
+        required: true
+        schema:
+          type: string
+        description: Context path of the application to undeploy
+      - name: version
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Undeploy result
+          content:
+            text/plain:
+              schema:
+                type: string
+  /text/start:
+    get:
+      operationId: startApplication
+      summary: Start Application
+      description: Starts a previously stopped web application.
+      tags:
+      - Applications
+      parameters:
+      - name: path
+        in: query
+        required: true
+        schema:
+          type: string
+        description: Context path of the application to start
+      - name: version
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Start result
+          content:
+            text/plain:
+              schema:
+                type: string
+  /text/stop:
+    get:
+      operationId: stopApplication
+      summary: Stop Application
+      description: Stops a running web application, making it unavailable without undeploying.
+      tags:
+      - Applications
+      parameters:
+      - name: path
+        in: query
+        required: true
+        schema:
+          type: string
+        description: Context path of the application to stop
+      - name: version
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Stop result
+          content:
+            text/plain:
+              schema:
+                type: string
+  /text/reload:
+    get:
+      operationId: reloadApplication
+      summary: Reload Application
+      description: Reloads a web application without full shutdown, picking up changes in WEB-INF/classes and WEB-INF/lib.
+      tags:
+      - Applications
+      parameters:
+      - name: path
+        in: query
+        required: true
+        schema:
+          type: string
+        description: Context path of the application to reload
+      - name: version
+        in: query
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Reload result
+          content:
+            text/plain:
+              schema:
+                type: string
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: 'HTTP Basic authentication. User must have appropriate role in tomcat-users.xml: manager-script for text interface, manager-jmx for JMX proxy.'

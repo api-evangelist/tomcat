@@ -1,0 +1,46 @@
+openapi: 3.1.0
+info:
+  title: Apache Tomcat Manager Applications Configuration API
+  description: The Apache Tomcat Manager application provides an HTTP text interface for deploying, managing, and monitoring Java web applications. Includes application lifecycle management (deploy, start, stop, reload, undeploy), session management, server status, diagnostics (thread dumps, VM info, memory leak detection), SSL/TLS management, JMX proxy access, and configuration persistence.
+  version: '10.1'
+  contact:
+    name: Apache Tomcat Users Mailing List
+    url: https://tomcat.apache.org/lists.html
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+servers:
+- url: http://localhost:8080/manager
+  description: Local Tomcat instance (default)
+security:
+- basicAuth: []
+tags:
+- name: Configuration
+  description: Server configuration management
+paths:
+  /text/save:
+    get:
+      operationId: saveConfiguration
+      summary: Save Configuration
+      description: Saves the current server configuration to server.xml. Optionally saves a specific application context to its context XML file.
+      tags:
+      - Configuration
+      parameters:
+      - name: path
+        in: query
+        schema:
+          type: string
+        description: Context path to save specific application context
+      responses:
+        '200':
+          description: Save result
+          content:
+            text/plain:
+              schema:
+                type: string
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: 'HTTP Basic authentication. User must have appropriate role in tomcat-users.xml: manager-script for text interface, manager-jmx for JMX proxy.'
