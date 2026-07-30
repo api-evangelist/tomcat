@@ -7,9 +7,22 @@ description: >-
   programmatic access to JMX MBeans for server diagnostics and configuration. Governed by the Apache Software
   Foundation.
 type: Index
+accessModel:
+  pricing: freemium
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Freemium · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
 position: Consumer
 access: 3rd-Party
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/tomcat.png
 tags:
   - Application Server
   - Java
@@ -22,45 +35,148 @@ modified: '2026-05-19'
 url: https://raw.githubusercontent.com/api-evangelist/tomcat/refs/heads/main/apis.yml
 specificationVersion: '0.19'
 apis:
-  - aid: tomcat:tomcat-manager-api
-    name: Apache Tomcat Manager API
-    description: >-
-      The Apache Tomcat Manager application provides an HTTP text interface for deploying, undeploying, starting,
-      stopping, and reloading web applications. Also includes session management, server status, thread dumps, VM
-      information, SSL/TLS configuration reload, memory leak detection, and configuration saving. Authentication
-      requires roles defined in tomcat-users.xml.
-    humanURL: https://tomcat.apache.org/tomcat-10.1-doc/manager-howto.html
-    baseURL: http://localhost:8080/manager
-    tags:
-      - Java
-      - Web Server
-      - Application Deployment
-      - Server Management
-    properties:
-      - type: Documentation
-        url: https://tomcat.apache.org/tomcat-10.1-doc/manager-howto.html
-      - type: OpenAPI
-        url: https://raw.githubusercontent.com/api-evangelist/tomcat/refs/heads/main/openapi/tomcat-manager-openapi.yml
-      - type: SpectralRules
-        url: https://raw.githubusercontent.com/api-evangelist/tomcat/refs/heads/main/rules/tomcat-rules.yml
-      - type: Vocabulary
-        url: https://raw.githubusercontent.com/api-evangelist/tomcat/refs/heads/main/vocabulary/tomcat-vocabulary.yml
-  - aid: tomcat:tomcat-jmx-proxy-api
-    name: Apache Tomcat JMX Proxy API
-    description: >-
-      The Apache Tomcat JMX Proxy Servlet provides HTTP-based access to JMX MBeans for querying, getting, setting, and
-      invoking operations on server management beans. Useful for server diagnostics, performance monitoring, and dynamic
-      configuration changes without restarting Tomcat.
-    humanURL: https://tomcat.apache.org/tomcat-10.1-doc/manager-howto.html#Using_the_JMX_Proxy_Servlet
-    baseURL: http://localhost:8080/manager/jmxproxy
-    tags:
-      - JMX
-      - Monitoring
-      - Java
-      - Diagnostics
-    properties:
-      - type: Documentation
-        url: https://tomcat.apache.org/tomcat-10.1-doc/manager-howto.html#Using_the_JMX_Proxy_Servlet
+- aid: tomcat:tomcat-jmx-proxy-api
+  name: Apache Tomcat JMX Proxy API
+  description: >-
+    The Apache Tomcat JMX Proxy Servlet provides HTTP-based access to JMX MBeans for querying, getting,
+    setting, and invoking operations on server management beans. Useful for server diagnostics, performance
+    monitoring, and dynamic configuration changes without restarting Tomcat.
+  humanURL: https://tomcat.apache.org/tomcat-10.1-doc/manager-howto.html#Using_the_JMX_Proxy_Servlet
+  baseURL: http://localhost:8080/manager/jmxproxy
+  tags:
+  - JMX
+  - Monitoring
+  - Java
+  - Diagnostics
+  properties:
+  - type: Documentation
+    url: https://tomcat.apache.org/tomcat-10.1-doc/manager-howto.html#Using_the_JMX_Proxy_Servlet
+- aid: tomcat:tomcat-applications-api
+  name: Apache Tomcat Applications API
+  description: Web application deployment and lifecycle management
+  humanURL: https://tomcat.apache.org/tomcat-10.1-doc/manager-howto.html
+  baseURL: http://localhost:8080/manager
+  tags:
+  - Applications
+  properties:
+  - type: OpenAPI
+    url: openapi/tomcat-applications-api-openapi.yml
+  - type: Documentation
+    url: https://tomcat.apache.org/tomcat-10.1-doc/manager-howto.html
+  - type: SpectralRules
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/tomcat/refs/heads/main/rules/tomcat-rules.yml
+  - type: Vocabulary
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/tomcat/refs/heads/main/vocabulary/tomcat-vocabulary.yml
+- aid: tomcat:tomcat-configuration-api
+  name: Apache Tomcat Configuration API
+  description: Server configuration management
+  humanURL: https://tomcat.apache.org/tomcat-10.1-doc/manager-howto.html
+  baseURL: http://localhost:8080/manager
+  tags:
+  - Configuration
+  properties:
+  - type: OpenAPI
+    url: openapi/tomcat-configuration-api-openapi.yml
+  - type: Documentation
+    url: https://tomcat.apache.org/tomcat-10.1-doc/manager-howto.html
+  - type: SpectralRules
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/tomcat/refs/heads/main/rules/tomcat-rules.yml
+  - type: Vocabulary
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/tomcat/refs/heads/main/vocabulary/tomcat-vocabulary.yml
+- aid: tomcat:tomcat-diagnostics-api
+  name: Apache Tomcat Diagnostics API
+  description: Server diagnostics and thread management
+  humanURL: https://tomcat.apache.org/tomcat-10.1-doc/manager-howto.html
+  baseURL: http://localhost:8080/manager
+  tags:
+  - Diagnostics
+  properties:
+  - type: OpenAPI
+    url: openapi/tomcat-diagnostics-api-openapi.yml
+  - type: Documentation
+    url: https://tomcat.apache.org/tomcat-10.1-doc/manager-howto.html
+  - type: SpectralRules
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/tomcat/refs/heads/main/rules/tomcat-rules.yml
+  - type: Vocabulary
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/tomcat/refs/heads/main/vocabulary/tomcat-vocabulary.yml
+- aid: tomcat:tomcat-jmx-api
+  name: Apache Tomcat JMX API
+  description: JMX proxy operations for MBean access
+  humanURL: https://tomcat.apache.org/tomcat-10.1-doc/manager-howto.html
+  baseURL: http://localhost:8080/manager
+  tags:
+  - JMX
+  properties:
+  - type: OpenAPI
+    url: openapi/tomcat-jmx-api-openapi.yml
+  - type: Documentation
+    url: https://tomcat.apache.org/tomcat-10.1-doc/manager-howto.html
+  - type: SpectralRules
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/tomcat/refs/heads/main/rules/tomcat-rules.yml
+  - type: Vocabulary
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/tomcat/refs/heads/main/vocabulary/tomcat-vocabulary.yml
+- aid: tomcat:tomcat-sessions-api
+  name: Apache Tomcat Sessions API
+  description: Session management and statistics
+  humanURL: https://tomcat.apache.org/tomcat-10.1-doc/manager-howto.html
+  baseURL: http://localhost:8080/manager
+  tags:
+  - Sessions
+  properties:
+  - type: OpenAPI
+    url: openapi/tomcat-sessions-api-openapi.yml
+  - type: Documentation
+    url: https://tomcat.apache.org/tomcat-10.1-doc/manager-howto.html
+  - type: SpectralRules
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/tomcat/refs/heads/main/rules/tomcat-rules.yml
+  - type: Vocabulary
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/tomcat/refs/heads/main/vocabulary/tomcat-vocabulary.yml
+- aid: tomcat:tomcat-ssl-api
+  name: Apache Tomcat SSL API
+  description: SSL/TLS certificate and cipher management
+  humanURL: https://tomcat.apache.org/tomcat-10.1-doc/manager-howto.html
+  baseURL: http://localhost:8080/manager
+  tags:
+  - SSL
+  properties:
+  - type: OpenAPI
+    url: openapi/tomcat-ssl-api-openapi.yml
+  - type: Documentation
+    url: https://tomcat.apache.org/tomcat-10.1-doc/manager-howto.html
+  - type: SpectralRules
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/tomcat/refs/heads/main/rules/tomcat-rules.yml
+  - type: Vocabulary
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/tomcat/refs/heads/main/vocabulary/tomcat-vocabulary.yml
+- aid: tomcat:tomcat-status-api
+  name: Apache Tomcat Status API
+  description: Server status and metrics
+  humanURL: https://tomcat.apache.org/tomcat-10.1-doc/manager-howto.html
+  baseURL: http://localhost:8080/manager
+  tags:
+  - Status
+  properties:
+  - type: OpenAPI
+    url: openapi/tomcat-status-api-openapi.yml
+  - type: Documentation
+    url: https://tomcat.apache.org/tomcat-10.1-doc/manager-howto.html
+  - type: SpectralRules
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/tomcat/refs/heads/main/rules/tomcat-rules.yml
+  - type: Vocabulary
+    url: >-
+      https://raw.githubusercontent.com/api-evangelist/tomcat/refs/heads/main/vocabulary/tomcat-vocabulary.yml
 features:
   - Web application deployment via WAR files
   - Application lifecycle management (start/stop/reload/undeploy)
