@@ -1,0 +1,26 @@
+{
+  "provider": "tomcat",
+  "sources": [
+    "tomcat-applications-api-openapi.yml",
+    "tomcat-configuration-api-openapi.yml",
+    "tomcat-diagnostics-api-openapi.yml",
+    "tomcat-jmx-api-openapi.yml",
+    "tomcat-sessions-api-openapi.yml",
+    "tomcat-ssl-api-openapi.yml",
+    "tomcat-status-api-openapi.yml"
+  ],
+  "outputs": [
+    "tomcat-applications-api-openapi.yml",
+    "tomcat-configuration-api-openapi.yml",
+    "tomcat-diagnostics-api-openapi.yml",
+    "tomcat-jmx-api-openapi.yml",
+    "tomcat-sessions-api-openapi.yml",
+    "tomcat-ssl-api-openapi.yml",
+    "tomcat-status-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
