@@ -199,6 +199,9 @@ solutions:
   - Java application hosting
   - Enterprise middleware management
 common:
+  - type: License
+    name: Apache-2.0
+    url: https://github.com/apache/tomcat/blob/main/LICENSE
   - type: AgenticAccess
     url: agentic-access/tomcat-agentic-access.yml
   - type: VulnerabilityDisclosure
