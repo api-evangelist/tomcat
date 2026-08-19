@@ -1,0 +1,377 @@
+{
+  "item": [
+    {
+      "id": "e4d5350b-3e06-4a7d-b7e9-ac29e6f2087b",
+      "name": "SSL",
+      "description": {
+        "content": "SSL/TLS certificate and cipher management",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "771a0bf0-b8de-43f6-8bf7-f97d7d498832",
+          "name": "Get SSL Connector Ciphers",
+          "request": {
+            "name": "Get SSL Connector Ciphers",
+            "description": {
+              "content": "Returns the SSL/TLS ciphers currently in use for each SSL connector.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "text",
+                "sslConnectorCiphers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "bd55298e-bd83-4d4c-b43f-cf02dffffaba",
+              "name": "SSL cipher information",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "text",
+                    "sslConnectorCiphers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "887d1b70-8a1a-4592-8cc3-fcbea729c0b3",
+          "name": "Get SSL Connector Certificates",
+          "request": {
+            "name": "Get SSL Connector Certificates",
+            "description": {
+              "content": "Returns certificate chain information for each SSL connector.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "text",
+                "sslConnectorCerts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a8252f6e-8a07-4580-bdb4-187d3fcbed69",
+              "name": "SSL certificate chain information",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "text",
+                    "sslConnectorCerts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "265035a4-98fb-4d41-9743-0fb3c533c240",
+          "name": "Get SSL Trusted Certificates",
+          "request": {
+            "name": "Get SSL Trusted Certificates",
+            "description": {
+              "content": "Returns trusted certificate information for each SSL connector.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "text",
+                "sslConnectorTrustedCerts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c5140202-decd-4b04-b1c1-3090340b9f13",
+              "name": "Trusted certificate information",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "text",
+                    "sslConnectorTrustedCerts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "503b88b7-b870-44f9-8fef-b9e0baf17dd8",
+          "name": "Reload SSL Configuration",
+          "request": {
+            "name": "Reload SSL Configuration",
+            "description": {
+              "content": "Reloads SSL/TLS certificate and key files without re-parsing server.xml. Optionally targets a specific TLS virtual host.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "text",
+                "sslReload"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "tlsHostName",
+                  "value": "<string>",
+                  "description": "Specific TLS virtual host name to reload"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b029938f-c2f5-4876-9bae-599554bbcaef",
+              "name": "SSL reload result",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "text",
+                    "sslReload"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "tlsHostName",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "http://localhost:8080/manager",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "90ef6a54-e707-47a0-ac37-a8d787498f02",
+    "name": "Apache Tomcat Manager Applications SSL API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Apache Tomcat Manager application provides an HTTP text interface for deploying, managing, and monitoring Java web applications. Includes application lifecycle management (deploy, start, stop, reload, undeploy), session management, server status, diagnostics (thread dumps, VM info, memory leak detection), SSL/TLS management, JMX proxy access, and configuration persistence.\n\nContact Support:\n Name: Apache Tomcat Users Mailing List",
+      "type": "text/plain"
+    }
+  }
+}

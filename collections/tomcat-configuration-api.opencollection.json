@@ -1,0 +1,44 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Apache Tomcat Manager Applications Configuration API",
+    "version": "10.1"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Configuration",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Save Configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:8080/manager/text/save",
+            "params": [
+              {
+                "name": "path",
+                "value": "",
+                "type": "query",
+                "description": "Context path to save specific application context"
+              }
+            ]
+          },
+          "docs": "Saves the current server configuration to server.xml. Optionally saves a specific application context to its context XML file."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

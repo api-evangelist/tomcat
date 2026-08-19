@@ -1,0 +1,74 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Apache Tomcat Manager Applications Sessions API",
+    "version": "10.1"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Sessions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Session Statistics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:8080/manager/text/sessions",
+            "params": [
+              {
+                "name": "path",
+                "value": "",
+                "type": "query",
+                "description": "Context path of the application"
+              },
+              {
+                "name": "version",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns session count statistics grouped by inactivity duration."
+        },
+        {
+          "info": {
+            "name": "Expire Sessions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:8080/manager/text/expire",
+            "params": [
+              {
+                "name": "path",
+                "value": "",
+                "type": "query",
+                "description": "Context path of the application"
+              },
+              {
+                "name": "idle",
+                "value": "",
+                "type": "query",
+                "description": "Minutes of inactivity (0 to expire all sessions)"
+              }
+            ]
+          },
+          "docs": "Expires sessions that have been idle for more than the specified number of minutes."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

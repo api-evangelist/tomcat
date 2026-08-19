@@ -1,0 +1,95 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Apache Tomcat Manager Applications Diagnostics API",
+    "version": "10.1"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Diagnostics",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Server Info",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:8080/manager/text/serverinfo"
+          },
+          "docs": "Returns OS properties, JVM properties, and Tomcat version information."
+        },
+        {
+          "info": {
+            "name": "List Global JNDI Resources",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:8080/manager/text/resources",
+            "params": [
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "Filter by Java class name (e.g., javax.sql.DataSource)"
+              }
+            ]
+          },
+          "docs": "Returns a list of global JNDI resources configured in Tomcat."
+        },
+        {
+          "info": {
+            "name": "Find Memory Leaks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:8080/manager/text/findleaks",
+            "params": [
+              {
+                "name": "statusLine",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Identifies web applications that have caused memory leaks upon reload. WARNING: Triggers full garbage collection. Use with caution in production."
+        },
+        {
+          "info": {
+            "name": "Get Thread Dump",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:8080/manager/text/threaddump"
+          },
+          "docs": "Returns a full thread dump of all JVM threads."
+        },
+        {
+          "info": {
+            "name": "Get VM Info",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:8080/manager/text/vminfo"
+          },
+          "docs": "Returns JVM information including memory usage and system properties."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

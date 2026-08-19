@@ -1,0 +1,217 @@
+{
+  "item": [
+    {
+      "id": "7766bcb5-869f-4a81-bcfa-8a6532f9e305",
+      "name": "JMX",
+      "description": {
+        "content": "JMX proxy operations for MBean access",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "90100e31-6fe6-4c14-bb3c-a35499bc535c",
+          "name": "JMX Proxy",
+          "request": {
+            "name": "JMX Proxy",
+            "description": {
+              "content": "Provides HTTP-based access to JMX MBeans. Supports query, get, set, and invoke operations on server management beans.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "jmxproxy",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "qry",
+                  "value": "<string>",
+                  "description": "JMX query expression (e.g., *:type=RequestProcessor,*)"
+                },
+                {
+                  "disabled": false,
+                  "key": "get",
+                  "value": "<string>",
+                  "description": "MBean name to get attribute from"
+                },
+                {
+                  "disabled": false,
+                  "key": "att",
+                  "value": "<string>",
+                  "description": "Attribute name to get or set"
+                },
+                {
+                  "disabled": false,
+                  "key": "key",
+                  "value": "<string>",
+                  "description": "Key within a CompositeData attribute"
+                },
+                {
+                  "disabled": false,
+                  "key": "set",
+                  "value": "<string>",
+                  "description": "MBean name for attribute setting"
+                },
+                {
+                  "disabled": false,
+                  "key": "val",
+                  "value": "<string>",
+                  "description": "New attribute value"
+                },
+                {
+                  "disabled": false,
+                  "key": "invoke",
+                  "value": "<string>",
+                  "description": "MBean name for method invocation"
+                },
+                {
+                  "disabled": false,
+                  "key": "op",
+                  "value": "<string>",
+                  "description": "Method name to invoke"
+                },
+                {
+                  "disabled": false,
+                  "key": "ps",
+                  "value": "<string>",
+                  "description": "Parameters for method invocation"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ce9e71a3-1aff-4ff7-827f-b0a6bfd878ed",
+              "name": "JMX operation result",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "jmxproxy",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "qry",
+                      "value": "*:type=RequestProcessor,*"
+                    },
+                    {
+                      "key": "get",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "att",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "key",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "set",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "val",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "invoke",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "op",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "ps",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "http://localhost:8080/manager",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "44c5493c-3831-4b54-b3bf-cbf3106622a2",
+    "name": "Apache Tomcat Manager Applications JMX API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Apache Tomcat Manager application provides an HTTP text interface for deploying, managing, and monitoring Java web applications. Includes application lifecycle management (deploy, start, stop, reload, undeploy), session management, server status, diagnostics (thread dumps, VM info, memory leak detection), SSL/TLS management, JMX proxy access, and configuration persistence.\n\nContact Support:\n Name: Apache Tomcat Users Mailing List",
+      "type": "text/plain"
+    }
+  }
+}

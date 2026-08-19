@@ -1,0 +1,92 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Apache Tomcat Manager Applications JMX API",
+    "version": "10.1"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "JMX",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "JMX Proxy",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:8080/manager/jmxproxy/",
+            "params": [
+              {
+                "name": "qry",
+                "value": "*:type=RequestProcessor,*",
+                "type": "query",
+                "description": "JMX query expression (e.g., *:type=RequestProcessor,*)"
+              },
+              {
+                "name": "get",
+                "value": "",
+                "type": "query",
+                "description": "MBean name to get attribute from"
+              },
+              {
+                "name": "att",
+                "value": "",
+                "type": "query",
+                "description": "Attribute name to get or set"
+              },
+              {
+                "name": "key",
+                "value": "",
+                "type": "query",
+                "description": "Key within a CompositeData attribute"
+              },
+              {
+                "name": "set",
+                "value": "",
+                "type": "query",
+                "description": "MBean name for attribute setting"
+              },
+              {
+                "name": "val",
+                "value": "",
+                "type": "query",
+                "description": "New attribute value"
+              },
+              {
+                "name": "invoke",
+                "value": "",
+                "type": "query",
+                "description": "MBean name for method invocation"
+              },
+              {
+                "name": "op",
+                "value": "",
+                "type": "query",
+                "description": "Method name to invoke"
+              },
+              {
+                "name": "ps",
+                "value": "",
+                "type": "query",
+                "description": "Parameters for method invocation"
+              }
+            ]
+          },
+          "docs": "Provides HTTP-based access to JMX MBeans. Supports query, get, set, and invoke operations on server management beans."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,145 @@
+{
+  "item": [
+    {
+      "id": "4a9f2618-a483-40d5-a3a2-f9899a84ab63",
+      "name": "Status",
+      "description": {
+        "content": "Server status and metrics",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "b14743e0-d84f-49c1-9615-47866e61082c",
+          "name": "Get Server Status",
+          "request": {
+            "name": "Get Server Status",
+            "description": {
+              "content": "Returns server status including connector details, memory usage, and thread statistics.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "status"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "XML",
+                  "value": "<boolean>",
+                  "description": "Return response in XML format"
+                },
+                {
+                  "disabled": false,
+                  "key": "JSON",
+                  "value": "<boolean>",
+                  "description": "Return response in JSON format"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/html"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7e117f29-3506-4b26-a0ec-bb69b2213600",
+              "name": "Server status",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "status"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "XML",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "JSON",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/html"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "http://localhost:8080/manager",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "2b0358ac-9b29-4945-8905-809afe58769f",
+    "name": "Apache Tomcat Manager Applications Status API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Apache Tomcat Manager application provides an HTTP text interface for deploying, managing, and monitoring Java web applications. Includes application lifecycle management (deploy, start, stop, reload, undeploy), session management, server status, diagnostics (thread dumps, VM info, memory leak detection), SSL/TLS management, JMX proxy access, and configuration persistence.\n\nContact Support:\n Name: Apache Tomcat Users Mailing List",
+      "type": "text/plain"
+    }
+  }
+}

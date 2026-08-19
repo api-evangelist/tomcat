@@ -1,0 +1,137 @@
+{
+  "item": [
+    {
+      "id": "c5a98d8e-2f2c-4e10-a498-5561f6036237",
+      "name": "Configuration",
+      "description": {
+        "content": "Server configuration management",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "b647b702-c36e-41ce-8ebf-e6de9e11f614",
+          "name": "Save Configuration",
+          "request": {
+            "name": "Save Configuration",
+            "description": {
+              "content": "Saves the current server configuration to server.xml. Optionally saves a specific application context to its context XML file.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "text",
+                "save"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "path",
+                  "value": "<string>",
+                  "description": "Context path to save specific application context"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6e52a8ca-59e9-4519-a7f2-a4795f45c4b5",
+              "name": "Save result",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "text",
+                    "save"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "path",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "http://localhost:8080/manager",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "56a3d200-aaa3-476e-9d31-0589e9085668",
+    "name": "Apache Tomcat Manager Applications Configuration API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Apache Tomcat Manager application provides an HTTP text interface for deploying, managing, and monitoring Java web applications. Includes application lifecycle management (deploy, start, stop, reload, undeploy), session management, server status, diagnostics (thread dumps, VM info, memory leak detection), SSL/TLS management, JMX proxy access, and configuration persistence.\n\nContact Support:\n Name: Apache Tomcat Users Mailing List",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,77 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Apache Tomcat Manager Applications SSL API",
+    "version": "10.1"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "SSL",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get SSL Connector Ciphers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:8080/manager/text/sslConnectorCiphers"
+          },
+          "docs": "Returns the SSL/TLS ciphers currently in use for each SSL connector."
+        },
+        {
+          "info": {
+            "name": "Get SSL Connector Certificates",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:8080/manager/text/sslConnectorCerts"
+          },
+          "docs": "Returns certificate chain information for each SSL connector."
+        },
+        {
+          "info": {
+            "name": "Get SSL Trusted Certificates",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:8080/manager/text/sslConnectorTrustedCerts"
+          },
+          "docs": "Returns trusted certificate information for each SSL connector."
+        },
+        {
+          "info": {
+            "name": "Reload SSL Configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:8080/manager/text/sslReload",
+            "params": [
+              {
+                "name": "tlsHostName",
+                "value": "",
+                "type": "query",
+                "description": "Specific TLS virtual host name to reload"
+              }
+            ]
+          },
+          "docs": "Reloads SSL/TLS certificate and key files without re-parsing server.xml. Optionally targets a specific TLS virtual host."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

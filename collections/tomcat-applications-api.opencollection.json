@@ -1,0 +1,215 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Apache Tomcat Manager Applications API",
+    "version": "10.1"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Applications",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Applications",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:8080/manager/text/list"
+          },
+          "docs": "Returns a list of all deployed web applications on the virtual host."
+        },
+        {
+          "info": {
+            "name": "Deploy Application From Path",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:8080/manager/text/deploy",
+            "params": [
+              {
+                "name": "path",
+                "value": "/myapp",
+                "type": "query",
+                "description": "Context path for the application (must start with /)"
+              },
+              {
+                "name": "war",
+                "value": "file:/path/to/webapp.war",
+                "type": "query",
+                "description": "URL or path to WAR file or directory"
+              },
+              {
+                "name": "config",
+                "value": "",
+                "type": "query",
+                "description": "URL to a Context configuration XML file"
+              },
+              {
+                "name": "update",
+                "value": "",
+                "type": "query",
+                "description": "Undeploy existing app before deploying"
+              },
+              {
+                "name": "tag",
+                "value": "",
+                "type": "query",
+                "description": "Tag name to associate with deployment"
+              },
+              {
+                "name": "version",
+                "value": "",
+                "type": "query",
+                "description": "Version string for parallel deployments"
+              }
+            ]
+          },
+          "docs": "Deploys a web application from a local WAR file or directory path on the server filesystem."
+        },
+        {
+          "info": {
+            "name": "Deploy WAR File",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "http://localhost:8080/manager/text/deploy",
+            "params": [
+              {
+                "name": "path",
+                "value": "",
+                "type": "query",
+                "description": "Context path for the application"
+              },
+              {
+                "name": "update",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "tag",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "config",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Deploys a WAR file uploaded via HTTP PUT request body."
+        },
+        {
+          "info": {
+            "name": "Undeploy Application",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:8080/manager/text/undeploy",
+            "params": [
+              {
+                "name": "path",
+                "value": "",
+                "type": "query",
+                "description": "Context path of the application to undeploy"
+              },
+              {
+                "name": "version",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Removes a web application and its files from the server. WARNING: This permanently deletes application artifacts from the appBase directory."
+        },
+        {
+          "info": {
+            "name": "Start Application",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:8080/manager/text/start",
+            "params": [
+              {
+                "name": "path",
+                "value": "",
+                "type": "query",
+                "description": "Context path of the application to start"
+              },
+              {
+                "name": "version",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Starts a previously stopped web application."
+        },
+        {
+          "info": {
+            "name": "Stop Application",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:8080/manager/text/stop",
+            "params": [
+              {
+                "name": "path",
+                "value": "",
+                "type": "query",
+                "description": "Context path of the application to stop"
+              },
+              {
+                "name": "version",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Stops a running web application, making it unavailable without undeploying."
+        },
+        {
+          "info": {
+            "name": "Reload Application",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost:8080/manager/text/reload",
+            "params": [
+              {
+                "name": "path",
+                "value": "",
+                "type": "query",
+                "description": "Context path of the application to reload"
+              },
+              {
+                "name": "version",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Reloads a web application without full shutdown, picking up changes in WEB-INF/classes and WEB-INF/lib."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
