@@ -28,6 +28,13 @@ tags:
   - Java
   - Servlet Container
   - Web Server
+  - Open-Source
+  - Apache
+tags_raw:
+  - Application Server
+  - Java
+  - Servlet Container
+  - Web Server
   - Open Source
   - Apache
 created: '2025-01-01'
@@ -57,6 +64,8 @@ apis:
   humanURL: https://tomcat.apache.org/tomcat-10.1-doc/manager-howto.html
   baseURL: http://localhost:8080/manager
   tags:
+  - Application
+  tags_raw:
   - Applications
   properties:
   - type: OpenAPI
