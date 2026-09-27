@@ -43,7 +43,7 @@ tags:
   - Java
   - Servlet Container
   - Web Server
-  - Open-Source
+  - Open Source
   - Apache
 tags_raw:
   - Application Server
@@ -52,6 +52,7 @@ tags_raw:
   - Web Server
   - Open Source
   - Apache
+  - Open-Source
 created: '2025-01-01'
 modified: '2026-05-19'
 url: https://raw.githubusercontent.com/api-evangelist/tomcat/refs/heads/main/apis.yml
